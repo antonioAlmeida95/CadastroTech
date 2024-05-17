@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace Domain;
+namespace Domain.Cadastro;
 
 public class Contato(string nome, string telefone, string email) : EntidadeBase<Contato>
 {

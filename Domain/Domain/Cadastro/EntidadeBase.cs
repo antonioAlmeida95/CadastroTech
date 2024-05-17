@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using FluentValidation;
 using ValidationResult = FluentValidation.Results.ValidationResult;
 
-namespace Domain;
+namespace Domain.Cadastro;
 
 public abstract class EntidadeBase<T> : AbstractValidator<T> where T : EntidadeBase<T>
 {

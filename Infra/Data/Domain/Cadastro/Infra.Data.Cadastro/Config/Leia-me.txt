@@ -1,0 +1,1 @@
+A pasta Config dos projetos não devem possuir arquivos versionados além desse, que foi versionado apenas para manter a pasta versionada (limitação do GIT)

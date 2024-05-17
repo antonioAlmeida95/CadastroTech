@@ -1,11 +1,13 @@
 using FluentValidation;
 
-namespace Domain;
+namespace Domain.Cadastro;
 
 public class Regiao(string nome, string sigla) : EntidadeBase<Regiao>
 {
     public string Nome { get; } = nome;
     public string Sigla { get; } = sigla;
+
+    public virtual ICollection<CodigoDiscagem> CodigosDiscagem { get; set; }
 
     public override bool ValidarEntidade()
     {
