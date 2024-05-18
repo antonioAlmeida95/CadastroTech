@@ -19,6 +19,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{D7636A
 		Config\appsettings.json = Config\appsettings.json
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service", "Service", "{679EAFC3-77CB-4C84-9826-6BA5378176FB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Serverless", "Serverless", "{D63C10F1-6692-4090-8BFB-ABA34198CA73}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.Cadastro", "Service\Serverless\Service.Cadastro\Service.Cadastro.csproj", "{C5114885-663D-4A91-A9DE-D4D700BEA8B4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5442C32C-DF87-4344-A2E5-47F3943BD685}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +44,10 @@ Global
 		{CC5EFD86-5DC5-4B55-9E32-B41373BAC9E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC5EFD86-5DC5-4B55-9E32-B41373BAC9E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC5EFD86-5DC5-4B55-9E32-B41373BAC9E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5114885-663D-4A91-A9DE-D4D700BEA8B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5114885-663D-4A91-A9DE-D4D700BEA8B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5114885-663D-4A91-A9DE-D4D700BEA8B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5114885-663D-4A91-A9DE-D4D700BEA8B4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{0B6F9C42-B605-486F-95D1-470A029B5164} = {F84EC05D-2EA7-4BCD-99ED-8511AE47A074}
@@ -41,5 +56,7 @@ Global
 		{DA8471A0-8DC2-4C61-B7DC-03717D58DD71} = {9CBCCD0E-C542-4199-9BC7-F7C763D9D2AD}
 		{CC5EFD86-5DC5-4B55-9E32-B41373BAC9E0} = {DA8471A0-8DC2-4C61-B7DC-03717D58DD71}
 		{D7636A05-B022-4B00-8CBF-F7F93E5C2DA1} = {F84EC05D-2EA7-4BCD-99ED-8511AE47A074}
+		{D63C10F1-6692-4090-8BFB-ABA34198CA73} = {679EAFC3-77CB-4C84-9826-6BA5378176FB}
+		{C5114885-663D-4A91-A9DE-D4D700BEA8B4} = {D63C10F1-6692-4090-8BFB-ABA34198CA73}
 	EndGlobalSection
 EndGlobal

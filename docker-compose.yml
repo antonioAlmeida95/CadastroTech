@@ -1,0 +1,19 @@
+﻿services:
+  service.cadastro:
+    image: service.cadastro
+    build:
+      context: .
+      dockerfile: Service/Serverless/Service.Cadastro/Dockerfile
+    depends_on:
+      - postgres
+
+  # Banco de dados PostgreSQL
+  postgres:
+    image: postgres:14.0
+    environment:
+      POSTGRES_PASSWORD: pos12345
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postech
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    ports:
+      - "5432:5432"

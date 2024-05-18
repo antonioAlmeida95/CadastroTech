@@ -1,4 +1,5 @@
 using Domain.Cadastro;
+using Infra.Data.Cadastro.Mappings;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infra.Data.Cadastro.Context;
@@ -13,6 +14,8 @@ public class CadastroContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        
+        modelBuilder.ApplyConfiguration(new ContatoMapping());
+        modelBuilder.ApplyConfiguration(new CodigoDiscagemMapping());
+        modelBuilder.ApplyConfiguration(new RegiaoMapping());
     }
 }
