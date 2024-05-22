@@ -6,8 +6,12 @@
       dockerfile: Service/Serverless/Service.Cadastro/Dockerfile
     depends_on:
       - postgres
+    ports:
+      - "2195:2195"
     networks:
       - my-network
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
 
   # Banco de dados PostgreSQL
   postgres:

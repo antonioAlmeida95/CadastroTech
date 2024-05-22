@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <OutputPath>../../../../../Bin/</OutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <OutputPath>../../../../../Bin/</OutputPath>
+    </PropertyGroup>
+
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="13.0.1" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0-preview.4.24266.19" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\..\Domain\Domain\Domain.csproj" />
+      <ProjectReference Include="..\..\..\..\Data\Domain\Cadastro\Infra.Data.Cadastro\Infra.Data.Cadastro.csproj" />
+    </ItemGroup>
+</Project>
