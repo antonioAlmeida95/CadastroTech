@@ -22,7 +22,12 @@ public class CodigoDiscagemMapping : IEntityTypeConfiguration<CodigoDiscagem>
 
         builder.HasOne(x => x.Regiao)
             .WithMany(x => x.CodigosDiscagem)
-            .HasForeignKey(x => x.RegiaoId);
+            .HasForeignKey(x => x.RegiaoId)
+            .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Ignore(x => x.ClassLevelCascadeMode);
+        builder.Ignore(x => x.RuleLevelCascadeMode);
+        builder.Ignore(x => x.CascadeMode);
         
         builder.Ignore(x => x.ValidationResult);
 

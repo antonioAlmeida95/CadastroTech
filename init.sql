@@ -1,0 +1,4 @@
+CREATE SCHEMA IF NOT EXISTS Cadastro;
+
+CREATE DATABASE postech;
+

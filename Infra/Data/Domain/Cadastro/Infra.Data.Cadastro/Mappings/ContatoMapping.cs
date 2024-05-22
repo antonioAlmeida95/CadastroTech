@@ -29,9 +29,13 @@ public class ContatoMapping : IEntityTypeConfiguration<Contato>
 
         builder.HasOne(x => x.CodigoDiscagem)
             .WithMany(x => x.Contatos)
-            .HasForeignKey(x => x.CodigoDiscagemId);
+            .HasForeignKey(x => x.CodigoDiscagemId)
+            .OnDelete(DeleteBehavior.Restrict);
         
         builder.Ignore(x => x.ValidationResult);
+        builder.Ignore(x => x.ClassLevelCascadeMode);
+        builder.Ignore(x => x.RuleLevelCascadeMode);
+        builder.Ignore(x => x.CascadeMode);
 
         builder.ToTable("Con_Contato", "Cadastro");
     }

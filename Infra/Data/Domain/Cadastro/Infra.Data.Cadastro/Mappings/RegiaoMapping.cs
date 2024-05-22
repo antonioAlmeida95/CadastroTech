@@ -20,7 +20,10 @@ public class RegiaoMapping : IEntityTypeConfiguration<Regiao>
             .IsRequired();
         
         builder.Ignore(x => x.ValidationResult);
-
+        builder.Ignore(x => x.ClassLevelCascadeMode);
+        builder.Ignore(x => x.RuleLevelCascadeMode);
+        builder.Ignore(x => x.CascadeMode);
+        
         builder.ToTable("Reg_Regiao", "Cadastro");
     }
 }

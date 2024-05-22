@@ -1,12 +1,14 @@
+using System;
 using Domain.Cadastro;
 using Infra.Data.Cadastro.Mappings;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infra.Data.Cadastro.Context;
 
-public class CadastroContext : DbContext
+public partial class CadastroContext : DbContext
 {
-    public CadastroContext(DbContextOptions options) : base(options) { }
+    private string _connectionString;
+    public CadastroContext(string connectionString = null) => _connectionString = connectionString;
 
     public DbSet<Contato> Contato { get; set; }
     public DbSet<CodigoDiscagem> CodigoDiscagem { get; set; }
