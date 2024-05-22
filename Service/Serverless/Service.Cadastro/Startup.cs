@@ -1,13 +1,17 @@
+using System;
+using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
-using Newtonsoft.Json;
 using System.Net;
 using System.Net.Mime;
 using System.Reflection;
-using System.Text;
 using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Service.Cadastro
 {
