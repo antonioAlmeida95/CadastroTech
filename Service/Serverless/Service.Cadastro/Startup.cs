@@ -47,7 +47,6 @@ namespace Service.Cadastro
         /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-            services = ConfigureServer(services);
             services = ConfigureNativeInjector(services);
            
             services.AddHttpClient();
@@ -110,17 +109,6 @@ namespace Service.Cadastro
 
             app.UseRouting();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
-        }
-
-        private IServiceCollection ConfigureServer(IServiceCollection services)
-        {
-            // If using Kestrel:
-            services.Configure<KestrelServerOptions>(options => options.AllowSynchronousIO = true);
-
-            // If using IIS:
-            services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
-
-            return services;
         }
 
         private static IServiceCollection ConfigureNativeInjector(IServiceCollection services)

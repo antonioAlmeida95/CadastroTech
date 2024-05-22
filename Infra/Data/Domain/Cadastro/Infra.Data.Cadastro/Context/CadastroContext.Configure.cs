@@ -1,4 +1,4 @@
-using System.Data;
+using System;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -14,8 +14,7 @@ public partial class CadastroContext
         if (string.IsNullOrEmpty(_connectionString))
             _connectionString = LoadConnectionString();
         
-        if(string.IsNullOrEmpty(_connectionString))
-            throw new DataException("Falha ao Obter String de Conexão");
+        ArgumentException.ThrowIfNullOrWhiteSpace(_connectionString);
 
         optionsBuilder.UseNpgsql(_connectionString);
     }

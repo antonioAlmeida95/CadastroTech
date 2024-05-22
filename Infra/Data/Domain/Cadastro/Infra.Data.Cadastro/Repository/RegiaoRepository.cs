@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Domain.Cadastro;
+using Infra.Data.Cadastro.Context;
 using Infra.Data.Cadastro.Repository.Interfaces;
-using Microsoft.EntityFrameworkCore;
 
 namespace Infra.Data.Cadastro.Repository;
 
 public class RegiaoRepository : RepositoryBase<Regiao>, IRegiaoRepository
 {
-    public RegiaoRepository(DbContext contexto) : base(contexto)
+    public RegiaoRepository(CadastroContext contexto) : base(contexto)
     {
     }
 

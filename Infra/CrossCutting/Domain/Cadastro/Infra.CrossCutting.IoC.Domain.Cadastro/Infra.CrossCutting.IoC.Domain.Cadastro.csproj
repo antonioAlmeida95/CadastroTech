@@ -20,6 +20,7 @@
 
 
     <ItemGroup>
+      <ProjectReference Include="..\..\..\..\..\Application\Application.Cadastro\Application.Cadastro.csproj" />
       <ProjectReference Include="..\..\..\..\..\Domain\Domain\Domain.csproj" />
       <ProjectReference Include="..\..\..\..\Data\Domain\Cadastro\Infra.Data.Cadastro\Infra.Data.Cadastro.csproj" />
     </ItemGroup>

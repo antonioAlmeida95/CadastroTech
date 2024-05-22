@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Domain.Cadastro;
+using Infra.Data.Cadastro.Context;
 using Infra.Data.Cadastro.Repository.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 
 namespace Infra.Data.Cadastro.Repository;
 
 public class ContatoRepository : RepositoryBase<Contato>, IContatoRepository
 {
-    public ContatoRepository(DbContext contexto) : base(contexto) { }
+    public ContatoRepository(CadastroContext contexto) : base(contexto) { }
 
     /// <inheritdoc />
     public IEnumerable<CodigoDiscagem> ObterCodigosDiscagem(Expression<Func<CodigoDiscagem, bool>> predicate, 
