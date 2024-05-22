@@ -24,6 +24,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\..\Domain\Domain\Domain.csproj" />
+      <ProjectReference Include="..\..\..\Infra\CrossCutting\Domain\Cadastro\Infra.CrossCutting.IoC.Domain.Cadastro\Infra.CrossCutting.IoC.Domain.Cadastro.csproj" />
       <ProjectReference Include="..\..\..\Infra\Data\Domain\Cadastro\Infra.Data.Cadastro\Infra.Data.Cadastro.csproj" />
     </ItemGroup>
 

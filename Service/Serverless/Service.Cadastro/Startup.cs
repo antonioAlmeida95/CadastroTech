@@ -7,6 +7,7 @@ using System.Net;
 using System.Net.Mime;
 using System.Reflection;
 using System.Text.Json.Serialization;
+using Infra.CrossCutting.IoC.Domain.Cadastro;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -47,10 +48,9 @@ namespace Service.Cadastro
         public void ConfigureServices(IServiceCollection services)
         {
             services = ConfigureServer(services);
-            services = ConfigureAppSettings(services);
+            services = ConfigureNativeInjector(services);
            
             services.AddHttpClient();
-
             services.AddSwaggerGen(options =>
             {
                 options.SwaggerDoc("v1", new OpenApiInfo
@@ -69,15 +69,10 @@ namespace Service.Cadastro
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 options.IncludeXmlComments(xmlPath);
-
-
             });
 
             services.AddControllers()
-                .AddJsonOptions(o =>
-                {
-                    o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
-                })
+                .AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles)
                 .ConfigureApiBehaviorOptions(options =>
                 {
                     options.InvalidModelStateResponseFactory = _ =>
@@ -104,7 +99,7 @@ namespace Service.Cadastro
                 app.UseDeveloperExceptionPage();
                 app.UseCors("SiteCorsPolicy");
             }
-
+            
             app.UseHttpsRedirection();
             app.UseSwagger();
             app.UseSwaggerUI(c =>
@@ -114,42 +109,23 @@ namespace Service.Cadastro
             });
 
             app.UseRouting();
-
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(endpoints => endpoints.MapControllers());
         }
 
         private IServiceCollection ConfigureServer(IServiceCollection services)
         {
             // If using Kestrel:
-            services.Configure<KestrelServerOptions>(options =>
-            {
-                options.AllowSynchronousIO = true;
-            });
+            services.Configure<KestrelServerOptions>(options => options.AllowSynchronousIO = true);
 
             // If using IIS:
-            services.Configure<IISServerOptions>(options =>
-            {
-                options.AllowSynchronousIO = true;
-            });
+            services.Configure<IISServerOptions>(options => options.AllowSynchronousIO = true);
 
             return services;
         }
 
-        private IServiceCollection ConfigureAppSettings(IServiceCollection services)
+        private static IServiceCollection ConfigureNativeInjector(IServiceCollection services)
         {
-            var basePath = Directory.GetCurrentDirectory() + "/Config";
-            
-            var appSettings = new ConfigurationBuilder()
-                .SetBasePath(basePath)
-                .AddJsonFile("appsettings.json")
-                .Build();
-            
-            var connectionString = appSettings.GetConnectionString("DefaultConnection");
-            
-            
+            NativeInjectorBootStrapper.RegisterServices(services);
             return services;
         }
         
