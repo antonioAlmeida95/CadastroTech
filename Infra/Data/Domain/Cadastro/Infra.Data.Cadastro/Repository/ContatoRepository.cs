@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Domain.Cadastro;
 using Infra.Data.Cadastro.Context;
 using Infra.Data.Cadastro.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 
 namespace Infra.Data.Cadastro.Repository;
@@ -18,7 +19,7 @@ public class ContatoRepository : RepositoryBase<Contato>, IContatoRepository
     public IEnumerable<CodigoDiscagem> ObterCodigosDiscagem(Expression<Func<CodigoDiscagem, bool>> predicate, 
         bool track = false)
     {
-        return Query(predicate, track: track).ToList();
+        return Query(predicate, track: track, include: i => i.Include(c => c.Regiao)).ToList();
     }
 
     /// <inheritdoc />

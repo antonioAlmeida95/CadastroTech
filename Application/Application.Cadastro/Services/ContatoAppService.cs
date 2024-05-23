@@ -79,4 +79,16 @@ public partial class ContatoAppService : IContatoAppService
 
         return contatoExistente != null ? _mapper.Map<ContatoViewModel>(contatoExistente) : null;
     }
+
+    /// <inheritdoc />
+    public IEnumerable<CodigoDiscagemViewModel> ObterListaCodigoDiscagem(CodigoDiscagemFiltroViewModel filtroViewModel)
+    {
+        var predicate = GerarPredicateCodigoDiscagem(filtroViewModel);
+
+        var codigosDiscagem = _contatoRepository.ObterCodigosDiscagem(predicate);
+
+        return codigosDiscagem?.Any() == true
+            ? _mapper.Map<IEnumerable<CodigoDiscagemViewModel>>(codigosDiscagem)
+            : new List<CodigoDiscagemViewModel>();
+    }
 }

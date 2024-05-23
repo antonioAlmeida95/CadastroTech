@@ -41,4 +41,11 @@ public interface IContatoAppService
     /// <param name="contatoId">Identificador do contato</param>
     /// <returns>Dados do contato</returns>
     public ContatoViewModel ObterContatoPorId(Guid contatoId);
+
+    /// <summary>
+    ///     Método para obtenção dos codigos discagem por filtro
+    /// </summary>
+    /// <param name="filtroViewModel">Dados para filtragem</param>
+    /// <returns>Listagem de codigo discagem filtrados</returns>
+    public IEnumerable<CodigoDiscagemViewModel> ObterListaCodigoDiscagem(CodigoDiscagemFiltroViewModel filtroViewModel);
 }

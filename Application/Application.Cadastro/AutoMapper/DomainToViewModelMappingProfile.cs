@@ -1,3 +1,4 @@
+using System;
 using Application.Cadastro.ViewModels;
 using AutoMapper;
 using Domain.Cadastro;

@@ -23,7 +23,7 @@ public partial class ContatoAppService
     }
 
     /// <summary>
-    ///     Método para a criação das clausulas de filtragem na consulta
+    ///     Método para a criação das clausulas de filtragem na consulta do contato
     /// </summary>
     /// <param name="filtroViewModel">Filtros</param>
     /// <returns>Cláusulas de filtragem</returns>
@@ -31,7 +31,7 @@ public partial class ContatoAppService
     {
         var predicate = ExpressionExtension.Query<Contato>();
 
-        if (filtroViewModel.ContatosId.Any())
+        if (filtroViewModel.ContatosId?.Any() == true)
             predicate = filtroViewModel.ContatosId.Length == 1
                 ? predicate.And(p => p.Id == filtroViewModel.ContatosId.First())
                 : predicate.And(p => filtroViewModel.ContatosId.Contains(p.Id));
@@ -51,6 +51,28 @@ public partial class ContatoAppService
         if (filtroViewModel.Ddd is > 0)
             predicate = predicate.And(p => p.CodigoDiscagem.RegiaoId == filtroViewModel.RegiaoId);
         
+        return predicate;
+    }
+
+    /// <summary>
+    ///     Método para a criação das cláusulas de filtragem na consulta dos codigo discagem
+    /// </summary>
+    /// <param name="filtroViewModel">Filtros</param>
+    /// <returns>Cláusulas de filtragem</returns>
+    private static Expression<Func<CodigoDiscagem, bool>> GerarPredicateCodigoDiscagem(
+        CodigoDiscagemFiltroViewModel filtroViewModel)
+    {
+        var predicate = ExpressionExtension.Query<CodigoDiscagem>();
+
+        if (filtroViewModel.CodigoDiscagemId != null && filtroViewModel.CodigoDiscagemId != Guid.Empty)
+            predicate = predicate.And(p => p.Id == filtroViewModel.CodigoDiscagemId);
+
+        if (filtroViewModel.RegiaoId != null && filtroViewModel.RegiaoId != Guid.Empty)
+            predicate = predicate.And(p => p.RegiaoId == filtroViewModel.RegiaoId);
+
+        if (filtroViewModel.Ddd > 0)
+            predicate = predicate.And(p => p.Ddd == filtroViewModel.Ddd);
+
         return predicate;
     }
 }

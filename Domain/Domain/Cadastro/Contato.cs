@@ -16,13 +16,20 @@ public class Contato : EntidadeBase<Contato>
     public void AlterarTelefone(string telefone) => Telefone = telefone;
     public void AlterarEmail(string email) => Email = email;
 
+    public Contato() { }
+
     public Contato(string nome, string telefone, string email, Guid codigoDiscagemId, Guid? id = null)
+        : this(nome, telefone, email, codigoDiscagemId)
+    {
+        Id = id ?? Guid.NewGuid();
+    }
+    
+    public Contato(string nome, string telefone, string email, Guid codigoDiscagemId)
     {
         Nome = nome;
         Telefone = telefone;
         Email = email;
         CodigoDiscagemId = codigoDiscagemId;
-        Id = id ?? Guid.NewGuid();
     }
 
     public override bool ValidarEntidade()

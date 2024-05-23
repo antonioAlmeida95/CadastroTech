@@ -49,7 +49,7 @@ public class ContatoController : ControllerBase
     [ProducesResponseType(typeof(BadRequest), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Post([FromBody] CadastrarContatoViewModel contatoViewModel)
     {
-        if (!ModelState.IsValid) return BadRequest();
+        if (!ModelState.IsValid) return BadRequest(ModelState.Values);
         
         var contatoId = await _contatoAppService.CadastarContato(contatoViewModel);
 
@@ -78,5 +78,16 @@ public class ContatoController : ControllerBase
         var contatoRemovido = await _contatoAppService.RemoverContato(contatoId);
 
         return contatoRemovido ? Ok(true) : BadRequest("Falha ao Cadastrar Contato");
+    }
+    
+    [HttpGet]
+    [Route("CodigoDiscagem/PorFiltros")]
+    [ProducesResponseType(typeof(Ok<IEnumerable<CodigoDiscagemViewModel>>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(Ok), StatusCodes.Status200OK)]
+    public IActionResult GetCodigoDiscagem([FromQuery] CodigoDiscagemFiltroViewModel filtros)
+    {
+        var listaCodigoDiscagem = _contatoAppService.ObterListaCodigoDiscagem(filtros);
+
+        return listaCodigoDiscagem?.Any() == true ? Ok(listaCodigoDiscagem) : Ok();
     }
 }
