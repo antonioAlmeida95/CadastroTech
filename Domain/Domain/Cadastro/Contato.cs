@@ -2,16 +2,28 @@
 
 namespace Domain.Cadastro;
 
-public class Contato(string nome, string telefone, string email) : EntidadeBase<Contato>
+public class Contato : EntidadeBase<Contato>
 {
-    public string Nome { get; } = nome;
-    public string Telefone { get; } = telefone;
-    public string Email { get; } = email;
+    public string Nome { get; private set; }
+    public string Telefone { get; private set; }
+    public string Email { get; private set;  }
 
     public Guid CodigoDiscagemId { get; private set; }
-    public virtual CodigoDiscagem CodigoDiscagem { get; private set; }
+    public virtual CodigoDiscagem CodigoDiscagem { get; }
 
     public void AlterarCodigoDiscagemId(Guid codigoDiscagemId) => CodigoDiscagemId = codigoDiscagemId;
+    public void AlterarNome(string nome) => Nome = nome;
+    public void AlterarTelefone(string telefone) => Telefone = telefone;
+    public void AlterarEmail(string email) => Email = email;
+
+    public Contato(string nome, string telefone, string email, Guid codigoDiscagemId, Guid? id = null)
+    {
+        Nome = nome;
+        Telefone = telefone;
+        Email = email;
+        CodigoDiscagemId = codigoDiscagemId;
+        Id = id ?? Guid.NewGuid();
+    }
 
     public override bool ValidarEntidade()
     {

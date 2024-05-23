@@ -46,10 +46,18 @@ public abstract class RepositoryBase<T> : IDisposable, IRepository<T> where T : 
     ///     Método para persistir todas as alterações no contexto
     /// </summary>
     /// <returns>Indicativo de sucesso da Operação</returns>
-    public async Task<bool> Commit()
+    protected async Task<bool> Commit()
     {
-        var linhasAfetadas = await _contexto.SaveChangesAsync();
-        return linhasAfetadas > 0;
+        try
+        {
+            var linhasAfetadas = await _contexto.SaveChangesAsync();
+            return linhasAfetadas > 0;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine($"Falha: {e.Message}");
+            return false;
+        }
     }
     
     public void Dispose()

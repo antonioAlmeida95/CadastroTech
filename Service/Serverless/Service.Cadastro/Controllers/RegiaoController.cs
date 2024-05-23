@@ -1,7 +1,10 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Application.Cadastro.Interfaces;
 using Application.Cadastro.ViewModels;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Service.Cadastro.Controllers;
@@ -18,6 +21,8 @@ public class RegiaoController  : ControllerBase
     }
     
     [HttpGet]
+    [Route("PorFiltro")]
+    [ProducesResponseType(typeof(Ok<IEnumerable<RegiaoViewModel>>), StatusCodes.Status200OK)]
     public IActionResult Get([FromQuery] RegiaoFiltroViewModel filtros)
     {
         var regioes = _regiaoAppService.ObterListagemRegiao(filtros);
@@ -26,6 +31,8 @@ public class RegiaoController  : ControllerBase
     
     [HttpGet]
     [Route("PorId/{regiaoId:guid}")]
+    [ProducesResponseType(typeof(Ok<RegiaoViewModel>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(BadRequest), StatusCodes.Status400BadRequest)]
     public IActionResult GetPorId([FromRoute] Guid regiaoId)
     {
         var regiao = _regiaoAppService.ObterRegiaoPorId(regiaoId);

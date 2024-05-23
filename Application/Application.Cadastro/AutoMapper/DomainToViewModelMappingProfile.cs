@@ -15,5 +15,9 @@ public class DomainToViewModelMappingProfile : Profile
         //CodigoDiscagem
         CreateMap<CodigoDiscagem, CodigoDiscagemViewModel>()
             .ForMember(x => x.CodigoDiscagemId, opt => opt.MapFrom(src => src.Id));
+        
+        //Contato
+        CreateMap<Contato, ContatoViewModel>()
+            .ForMember(x => x.ContatoId, opt => opt.MapFrom(src => src.Id));
     }
 }

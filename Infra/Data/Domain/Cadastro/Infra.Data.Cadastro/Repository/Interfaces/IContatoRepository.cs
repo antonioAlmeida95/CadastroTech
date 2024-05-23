@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using Domain.Cadastro;
 using Microsoft.EntityFrameworkCore.Query;
 
@@ -26,4 +27,33 @@ public interface IContatoRepository
     /// <returns>Lista de Contatos Filtrados</returns>
     IEnumerable<Contato> ObterContatos(Expression<Func<Contato, bool>> predicate, bool track = false,
         Func<IQueryable<Contato>, IIncludableQueryable<Contato, object>> include = null);
+
+    /// <summary>
+    ///     Método para inclusão de um contato
+    /// </summary>
+    /// <param name="contato">Dados do contato</param>
+    /// <returns>Indicativo de Sucesso</returns>
+    Task<bool> IncluirContato(Contato contato);
+
+    /// <summary>
+    ///     Método para atualizar um contato
+    /// </summary>
+    /// <param name="contato">Dados do contato</param>
+    /// <returns>Indicativo de Sucesso</returns>
+    Task<bool> AtualizarContato(Contato contato);
+
+    /// <summary>
+    ///     Método para remover um contato
+    /// </summary>
+    /// <param name="contato">Dados do contato</param>
+    /// <returns>Indicativo de Sucesso</returns>
+    Task<bool> RemoverContato(Contato contato);
+
+    /// <summary>
+    ///     Método para obtenção de um contato por filtro
+    /// </summary>
+    /// <param name="predicate">Clausulas de filtragem</param>
+    /// <param name="track">trackeamento da entidade</param>
+    /// <returns>Dados do contato</returns>
+    Contato ObterContato(Expression<Func<Contato, bool>> predicate, bool track = false);
 }
