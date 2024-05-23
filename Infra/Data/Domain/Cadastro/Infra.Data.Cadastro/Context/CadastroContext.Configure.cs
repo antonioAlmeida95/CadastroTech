@@ -26,6 +26,10 @@ public partial class CadastroContext
     /// <returns>String de Conexão</returns>
     private static string LoadConnectionString(string connectionStringName = "DefaultConnection")
     {
+        #if !DEBUG
+        connectionStringName = "DockerConnection";
+        #endif
+        
         var config = new ConfigurationBuilder()
             .SetBasePath(Directory.GetCurrentDirectory() + "//Config")
             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
