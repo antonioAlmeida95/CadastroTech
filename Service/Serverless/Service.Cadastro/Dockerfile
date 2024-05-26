@@ -11,6 +11,7 @@ COPY ["Domain/Domain/Domain.csproj", "Domain/Domain/"]
 COPY ["Infra/CrossCutting/Domain/Cadastro/Infra.CrossCutting.IoC.Domain.Cadastro/Infra.CrossCutting.IoC.Domain.Cadastro.csproj", "Infra/CrossCutting/Domain/Cadastro/Infra.CrossCutting.IoC.Domain.Cadastro/"]
 COPY ["Infra/Data/Domain/Cadastro/Infra.Data.Cadastro/Infra.Data.Cadastro.csproj", "Infra/Data/Domain/Cadastro/Infra.Data.Cadastro/"]
 COPY ["Util/Util.ExpressionExtension/Util.ExpressionExtension.csproj", "Util/Util.ExpressionExtension/"]
+COPY ["Tests/UnityTest/Application/Application.Cadastro.Test/Application.Cadastro.Test.csproj", "Tests/UnityTest/Application/Application.Cadastro.Test/"]
 
 RUN dotnet restore "Service/Serverless/Service.Cadastro/Service.Cadastro.csproj"
 COPY . .

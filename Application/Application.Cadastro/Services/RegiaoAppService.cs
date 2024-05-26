@@ -27,7 +27,9 @@ public class RegiaoAppService : IRegiaoAppService
     {
         var predicate = GerarPredicateRegiao(regiaoFiltro);
         var regioes = _regiaoRepository.ObterRegioes(predicate);
-        return _mapper.Map<IEnumerable<RegiaoViewModel>>(regioes);
+        return regioes?.Any() == true
+            ? _mapper.Map<IEnumerable<RegiaoViewModel>>(regioes)
+            : new List<RegiaoViewModel>();
     }
 
     /// <inheritdoc />

@@ -43,7 +43,7 @@ public partial class ContatoAppService : IContatoAppService
         
         AtualizarCamposContato(ref contatoExistente, contatoViewModel);
 
-        if (contatoExistente.ValidarEntidade()) return false;
+        if (!contatoExistente.ValidarEntidade()) return false;
 
         return await _contatoRepository.AtualizarContato(contatoExistente);
     }
@@ -55,7 +55,7 @@ public partial class ContatoAppService : IContatoAppService
 
         if (contatoExistente == null) return false;
 
-        return  await _contatoRepository.RemoverContato(contatoExistente);
+        return await _contatoRepository.RemoverContato(contatoExistente);
     }
 
     /// <inheritdoc />

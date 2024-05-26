@@ -49,7 +49,7 @@ public partial class ContatoAppService
             predicate = predicate.And(p => p.CodigoDiscagem.RegiaoId == filtroViewModel.RegiaoId);
         
         if (filtroViewModel.Ddd is > 0)
-            predicate = predicate.And(p => p.CodigoDiscagem.RegiaoId == filtroViewModel.RegiaoId);
+            predicate = predicate.And(p => p.CodigoDiscagem.Ddd == filtroViewModel.Ddd);
         
         return predicate;
     }

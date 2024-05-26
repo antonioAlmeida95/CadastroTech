@@ -1,19 +1,18 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Infra.Data.Cadastro.Context;
 using Infra.Data.Cadastro.Repository.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 
 namespace Infra.Data.Cadastro.Repository;
 
 public abstract class RepositoryBase<T> : IDisposable, IRepository<T> where T : class
 {
-    private readonly DbContext _contexto;
+    private readonly CadastroContext _contexto;
 
-    public RepositoryBase(DbContext contexto)
+    public RepositoryBase(CadastroContext contexto)
     {
         _contexto = contexto;
     }
@@ -35,12 +34,7 @@ public abstract class RepositoryBase<T> : IDisposable, IRepository<T> where T : 
     {
         _contexto.Remove(entidade);
     }
-
-    /// <inheritdoc />
-    public IEnumerable<T> ObterDados(Expression<Func<T, bool>> predicate)
-    {
-        return Query(predicate).ToList();
-    }
+    
 
     /// <summary>
     ///     Método para persistir todas as alterações no contexto
@@ -75,11 +69,11 @@ public abstract class RepositoryBase<T> : IDisposable, IRepository<T> where T : 
     /// <param name="take">Tamanho da Listagem</param>
     /// <typeparam name="TX">Entidade Base</typeparam>
     /// <returns>Query com os dados</returns>
-    protected virtual IQueryable<TX> Query<TX>(Expression<Func<TX, bool>> expression = null, 
+    protected IQueryable<TX> Query<TX>(Expression<Func<TX, bool>> expression = null, 
         Func<IQueryable<TX>, IIncludableQueryable<TX, object>> include = null, bool track = false,
         int? skip = null, int? take = null) where TX : class
     {
-        var query = track ? _contexto.Set<TX>() : _contexto.Set<TX>().AsTracking();
+        var query = _contexto.GetQuery<TX>(track);
 
         if (expression != null)
             query = query.Where(expression);

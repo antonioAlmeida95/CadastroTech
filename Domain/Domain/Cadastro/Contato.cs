@@ -9,9 +9,10 @@ public class Contato : EntidadeBase<Contato>
     public string Email { get; private set;  }
 
     public Guid CodigoDiscagemId { get; private set; }
-    public virtual CodigoDiscagem CodigoDiscagem { get; }
+    public virtual CodigoDiscagem CodigoDiscagem { get; private set; }
 
     public void AlterarCodigoDiscagemId(Guid codigoDiscagemId) => CodigoDiscagemId = codigoDiscagemId;
+    public void AlterarCodigoDiscagem(CodigoDiscagem codigoDiscagem) => CodigoDiscagem = codigoDiscagem;
     public void AlterarNome(string nome) => Nome = nome;
     public void AlterarTelefone(string telefone) => Telefone = telefone;
     public void AlterarEmail(string email) => Email = email;

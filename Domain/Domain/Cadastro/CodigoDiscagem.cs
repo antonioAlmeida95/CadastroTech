@@ -2,13 +2,28 @@ using FluentValidation;
 
 namespace Domain.Cadastro;
 
-public class CodigoDiscagem(int ddd, Guid regiaoId) : EntidadeBase<CodigoDiscagem>
+public class CodigoDiscagem: EntidadeBase<CodigoDiscagem>
 {
-    public int Ddd { get; } = ddd;
-    public Guid RegiaoId { get; } = regiaoId;
-    public virtual Regiao Regiao { get; }
+    public int Ddd { get; }
+    public Guid RegiaoId { get; }
+    public virtual Regiao Regiao { get; private set;  }
 
-    public virtual ICollection<Contato> Contatos { get; set; }
+    public virtual ICollection<Contato> Contatos { get; init; }
+
+    public void AlterarRegiao(Regiao regiao) => Regiao = regiao;
+
+    public CodigoDiscagem() { }
+    
+    public CodigoDiscagem(int ddd, Guid regiaoId)
+    {
+        Ddd = ddd;
+        RegiaoId = regiaoId;
+    }
+
+    public CodigoDiscagem(Guid? id, int ddd, Guid regiaoId) : this(ddd, regiaoId)
+    {
+        Id = id ?? Guid.NewGuid();
+    }
 
     public override bool ValidarEntidade()
     {
