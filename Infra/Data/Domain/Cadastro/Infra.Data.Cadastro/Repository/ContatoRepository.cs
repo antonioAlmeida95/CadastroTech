@@ -53,6 +53,9 @@ public class ContatoRepository : RepositoryBase<Contato>, IContatoRepository
     /// <inheritdoc />
     public Contato ObterContato(Expression<Func<Contato, bool>> predicate, bool track = false)
     {
-        return Query(predicate, track: track).FirstOrDefault();
+        return Query(predicate, track: track, 
+                include: i => i.Include(c => c.CodigoDiscagem)
+                            .ThenInclude(c => c.Regiao))
+            .FirstOrDefault();
     }
 }

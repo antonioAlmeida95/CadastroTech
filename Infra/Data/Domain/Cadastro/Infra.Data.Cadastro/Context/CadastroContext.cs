@@ -1,5 +1,4 @@
 using Domain.Cadastro;
-using Infra.Data.Cadastro.Context.Interface;
 using Infra.Data.Cadastro.Mappings;
 using Microsoft.EntityFrameworkCore;
 

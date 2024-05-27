@@ -21,6 +21,11 @@ public class ContatoController : ControllerBase
         _contatoAppService = contatoAppService;
     }
     
+    /// <summary>
+    ///     Endpoint para obtenção da lista de contatos por filtros
+    /// </summary>
+    /// <param name="filtros">Filtros para listagem</param>
+    /// <returns>Lista de Contatos filtrados</returns>
     [HttpGet]
     [Route("PorFiltros")]
     [ProducesResponseType(typeof(Ok<IEnumerable<ContatoViewModel>>), StatusCodes.Status200OK)]
@@ -32,6 +37,11 @@ public class ContatoController : ControllerBase
         return contatos?.Any() == true ? Ok(contatos) : Ok();
     }
     
+    /// <summary>
+    ///     Endpoint para obtenção do contato por meio do identificador
+    /// </summary>
+    /// <param name="contatoId">Identificador do Contato</param>
+    /// <returns>Contato Obtido</returns>
     [HttpGet]
     [Route("PorId/{contatoId:guid}")]
     [ProducesResponseType(typeof(Ok<ContatoViewModel>), StatusCodes.Status200OK)]
@@ -40,9 +50,14 @@ public class ContatoController : ControllerBase
     {
         var contato = _contatoAppService.ObterContatoPorId(contatoId);
 
-        return contato != null ? Ok(contato) : BadRequest("Falha ao Obter Região");
+        return contato != null ? Ok(contato) : BadRequest("Falha ao Obter Contato");
     }
     
+    /// <summary>
+    ///     Endpoint para cadastro de um contato
+    /// </summary>
+    /// <param name="contatoViewModel">Dados do contato</param>
+    /// <returns>Identificador do Contato cadastrado</returns>
     [HttpPost]
     [Route("Cadastrar")]
     [ProducesResponseType(typeof(Ok<Guid>), StatusCodes.Status200OK)]
@@ -56,6 +71,11 @@ public class ContatoController : ControllerBase
         return contatoId != Guid.Empty ? Ok(contatoId) : BadRequest("Falha ao Cadastrar Contato");
     }
     
+    /// <summary>
+    ///     Endpoint para atualização de um contato
+    /// </summary>
+    /// <param name="contatoViewModel">Dados do Contato</param>
+    /// <returns>Boleano indicando sucesso da operação</returns>
     [HttpPut]
     [Route("Atualizar")]
     [ProducesResponseType(typeof(Ok<bool>), StatusCodes.Status200OK)]
@@ -69,6 +89,11 @@ public class ContatoController : ControllerBase
         return contatoAtualizado ? Ok(true) : BadRequest("Falha ao Cadastrar Contato");
     }
     
+    /// <summary>
+    ///     Endpoint para remoção de um contato por meio do identificador
+    /// </summary>
+    /// <param name="contatoId">Identificador do Contato</param>
+    /// <returns>Boleano indicando sucesso da operação</returns>
     [HttpDelete]
     [Route("Remover/{contatoId:guid}")]
     [ProducesResponseType(typeof(Ok<bool>), StatusCodes.Status200OK)]
@@ -80,6 +105,11 @@ public class ContatoController : ControllerBase
         return contatoRemovido ? Ok(true) : BadRequest("Falha ao Cadastrar Contato");
     }
     
+    /// <summary>
+    ///     Endpoint para obtenção da lista de codigo de discagem por filtros
+    /// </summary>
+    /// <param name="filtros">Filtros para listagem</param>
+    /// <returns>Lista de Codigos de Discagem filtrados</returns>
     [HttpGet]
     [Route("CodigoDiscagem/PorFiltros")]
     [ProducesResponseType(typeof(Ok<IEnumerable<CodigoDiscagemViewModel>>), StatusCodes.Status200OK)]
