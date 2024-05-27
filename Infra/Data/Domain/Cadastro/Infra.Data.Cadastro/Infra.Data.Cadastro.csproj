@@ -32,6 +32,10 @@
         <ProjectReference Include="..\..\..\..\..\Domain\Domain\Domain.csproj"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="Context\Interface\ICadastroContext.cs" />
+    </ItemGroup>
+
     <Target Name="PostBuild" AfterTargets="PostBuildEvent">
         <ItemGroup>
             <SourceConfig Include="../../../../../Config/*.json"/>

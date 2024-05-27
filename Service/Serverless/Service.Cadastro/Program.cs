@@ -21,7 +21,6 @@ public class Program
                 logging.AddDebug();
                 logging.AddEventSourceLogger();
             })
-            .ConfigureWebHostDefaults(webBuilder => { webBuilder
-                .UseUrls("http://localhost:2195").UseStartup<Startup>(); });
+            .ConfigureWebHostDefaults(webBuilder => { webBuilder.UseStartup<Startup>(); });
     }
 }

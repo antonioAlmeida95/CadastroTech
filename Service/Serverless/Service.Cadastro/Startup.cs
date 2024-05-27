@@ -71,19 +71,7 @@ namespace Service.Cadastro
             });
 
             services.AddControllers()
-                .AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles)
-                .ConfigureApiBehaviorOptions(options =>
-                {
-                    options.InvalidModelStateResponseFactory = _ =>
-                    {
-                        var result = new BadRequestObjectResult("Os valores informados não são válidos.");
-                        result.ContentTypes.Add(MediaTypeNames.Application.Json);
-                        result.StatusCode = (int)HttpStatusCode.PreconditionFailed;
-
-                        return result;
-                    };
-                });
-            
+                .AddJsonOptions(o => o.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
         }
 
         /// <summary>

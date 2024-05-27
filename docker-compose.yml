@@ -7,7 +7,7 @@
     depends_on:
       - postgres
     ports:
-      - "2195:2195"
+      - "2195:8080"
     networks:
       - my-network
     environment:

@@ -1,11 +1,10 @@
-using System;
 using Domain.Cadastro;
 using Infra.Data.Cadastro.Mappings;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infra.Data.Cadastro.Context;
 
-public partial class CadastroContext : DbContext
+public partial class CadastroContext : BaseContext
 {
     private string _connectionString;
     public CadastroContext(string connectionString = null) => _connectionString = connectionString;

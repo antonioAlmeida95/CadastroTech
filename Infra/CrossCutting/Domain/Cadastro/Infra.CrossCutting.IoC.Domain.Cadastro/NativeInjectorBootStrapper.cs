@@ -27,6 +27,7 @@ public class NativeInjectorBootStrapper
         
         //Applications
         services.AddScoped<IRegiaoAppService, RegiaoAppService>();
+        services.AddScoped<IContatoAppService, ContatoAppService>();
     }
     
 }

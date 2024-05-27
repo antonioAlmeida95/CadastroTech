@@ -22,13 +22,17 @@ public class RegiaoAppService : IRegiaoAppService
         _mapper = mapper;
     }
     
+    /// <inheritdoc />
     public IEnumerable<RegiaoViewModel> ObterListagemRegiao(RegiaoFiltroViewModel regiaoFiltro)
     {
         var predicate = GerarPredicateRegiao(regiaoFiltro);
         var regioes = _regiaoRepository.ObterRegioes(predicate);
-        return _mapper.Map<IEnumerable<RegiaoViewModel>>(regioes);
+        return regioes?.Any() == true
+            ? _mapper.Map<IEnumerable<RegiaoViewModel>>(regioes)
+            : new List<RegiaoViewModel>();
     }
 
+    /// <inheritdoc />
     public RegiaoViewModel ObterRegiaoPorId(Guid regiaoId)
     {
         if (regiaoId == Guid.Empty) return null;
@@ -37,7 +41,12 @@ public class RegiaoAppService : IRegiaoAppService
 
         return regiao != null ? _mapper.Map<RegiaoViewModel>(regiao) : null;
     }
-
+    
+    /// <summary>
+    ///     Método para a criação das clausulas de filtragem na consulta
+    /// </summary>
+    /// <param name="regiaoFiltro">Filtros</param>
+    /// <returns>Clausulas de filtragem</returns>
     private static Expression<Func<Regiao, bool>> GerarPredicateRegiao(RegiaoFiltroViewModel regiaoFiltro)
     {
         var predicate = ExpressionExtension.Query<Regiao>();
