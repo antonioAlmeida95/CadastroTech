@@ -12,6 +12,7 @@ public class ContatoBaseViewModel
     
     [Required(ErrorMessage = "Telefone é um campo Obrigatório.")]
     [MaxLength(10)]
+    [MinLength(9)]
     public string Telefone { get; set; }
     
     [Required(ErrorMessage = "Email é um campo Obrigatório.")]
