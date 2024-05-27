@@ -192,20 +192,20 @@ public partial class ContatoAppServiceTest
            1
         ];
         
-        // yield return
-        // [
-        //     new List<CodigoDiscagem> {codigoDiscagem1, codigoDiscagem3, codigoDiscagem2, codigoDiscagem4 },
-        //     ContatoFactory.GerarCodigoDiscagemFiltroViewModel(regiaoId: regiaoId),
-        //     new List<CodigoDiscagem> { codigoDiscagem1, codigoDiscagem2, codigoDiscagem3 },
-        //     3
-        // ];
-        //
-        // yield return
-        // [
-        //     new List<CodigoDiscagem> {codigoDiscagem1, codigoDiscagem3, codigoDiscagem2, codigoDiscagem4 },
-        //     ContatoFactory.GerarCodigoDiscagemFiltroViewModel(ddd: ddd),
-        //     new List<CodigoDiscagem> { codigoDiscagem2, codigoDiscagem3 },
-        //     2
-        // ];
+        yield return
+        [
+            new List<CodigoDiscagem> {codigoDiscagem1, codigoDiscagem3, codigoDiscagem2, codigoDiscagem4 },
+            ContatoFactory.GerarCodigoDiscagemFiltroViewModel(regiaoId: regiaoId),
+            new List<CodigoDiscagem> { codigoDiscagem1, codigoDiscagem2, codigoDiscagem3 },
+            3
+        ];
+        
+        yield return
+        [
+            new List<CodigoDiscagem> {codigoDiscagem1, codigoDiscagem3, codigoDiscagem2, codigoDiscagem4 },
+            ContatoFactory.GerarCodigoDiscagemFiltroViewModel(ddd: ddd),
+            new List<CodigoDiscagem> { codigoDiscagem2, codigoDiscagem3 },
+            2
+        ];
     }
 }
