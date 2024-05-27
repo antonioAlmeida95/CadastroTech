@@ -9,7 +9,7 @@ public class Regiao : EntidadeBase<Regiao>
     
     public virtual ICollection<CodigoDiscagem> CodigosDiscagem { get; init; }
     
-    public Regiao(string nome, string sigla)
+    public Regiao(string nome, string sigla) : this()
     {
         Nome = nome;
         Sigla = sigla;
@@ -20,7 +20,10 @@ public class Regiao : EntidadeBase<Regiao>
         Id = id ?? Guid.NewGuid();
     }
 
-    public Regiao() { }
+    public Regiao()
+    {
+        CodigosDiscagem = new List<CodigoDiscagem>();
+    }
     
     public override bool ValidarEntidade()
     {
@@ -30,7 +33,7 @@ public class Regiao : EntidadeBase<Regiao>
         
         RuleFor(x => x.Sigla)
             .NotEmpty()
-            .WithMessage("O Sigla é um campo obrigatório");
+            .WithMessage("A Sigla é um campo obrigatório");
         
         ValidationResult = Validate(this);
 

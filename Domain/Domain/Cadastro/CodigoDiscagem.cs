@@ -12,9 +12,12 @@ public class CodigoDiscagem: EntidadeBase<CodigoDiscagem>
 
     public void AlterarRegiao(Regiao regiao) => Regiao = regiao;
 
-    public CodigoDiscagem() { }
+    public CodigoDiscagem()
+    {
+        Contatos = new List<Contato>();
+    }
     
-    public CodigoDiscagem(int ddd, Guid regiaoId)
+    public CodigoDiscagem(int ddd, Guid regiaoId) : this()
     {
         Ddd = ddd;
         RegiaoId = regiaoId;
@@ -28,12 +31,12 @@ public class CodigoDiscagem: EntidadeBase<CodigoDiscagem>
     public override bool ValidarEntidade()
     {
         RuleFor(x => x.Ddd)
-            .Must(s => s <= 0)
+            .Must(s => s > 0)
             .WithMessage("Valor inválido para o campo do DDD");
 
         RuleFor(x => x.RegiaoId)
             .NotEmpty()
-            .WithMessage("O identificador da Região é necessário ser informado.");
+            .WithMessage("O identificador da Região é necessário");
         
         ValidationResult = Validate(this);
 
