@@ -7,8 +7,7 @@ contatos regionais, considerando a persistência de dados e a qualidade do softw
 
 ## Funcionalidades
 
-- Cadastro de contatos: permitir o cadastro de novos contatos, incluindo nome, telefone e e-mail. As-
-socie cada contato a um DDD correspondente à região.
+- Cadastro de contatos: permitir o cadastro de novos contatos, incluindo nome, telefone e e-mail. Associe cada contato a um DDD correspondente à região.
 - Consulta de contatos: implementar uma funcionalidade para consultar e visualizar os contatos ca-
 dastrados, os quais podem ser filtrados pelo DDD da região.
 - Atualização e exclusão: possibilitar a atualização e exclusão de contatos previamente cadastrados.
