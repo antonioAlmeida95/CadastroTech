@@ -41,4 +41,3 @@ jobs:
         context: ./Service/Serverless/Service.Cadastro/
         push: true
         tags: 'lucasstark95/cadastro-tech:latest'
-          
