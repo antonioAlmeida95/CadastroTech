@@ -3,7 +3,7 @@
     image: service.cadastro
     build:
       context: .
-      dockerfile: Service/Serverless/Service.Cadastro/Dockerfile
+      dockerfile: Dockerfile
     depends_on:
       - postgres
     ports:

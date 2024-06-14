@@ -44,7 +44,7 @@ jobs:
     - name: Build and push Docker images
       uses: docker/build-push-action@v5
       with:
-        context: ./Service/Serverless/Service.Cadastro/
+        context: .
         platforms: linux/amd64,linux/arm64
         push: true
         tags: '${{ secrets.USER_DOCKER_NAME }}/cadastro-tech:latest'
