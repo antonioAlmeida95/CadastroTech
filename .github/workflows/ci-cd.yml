@@ -45,6 +45,6 @@ jobs:
       uses: docker/build-push-action@v5
       with:
         context: .
-        platforms: linux/x64
+        platforms: linux/amd64
         push: true
         tags: lucastark95/cadastro-tech:latest
