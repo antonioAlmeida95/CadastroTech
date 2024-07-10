@@ -1,6 +1,8 @@
 ﻿services:
+  #Aplicação .net
   service.cadastro:
     image: service.cadastro
+    container_name: application
     build:
       context: .
       dockerfile: Dockerfile
