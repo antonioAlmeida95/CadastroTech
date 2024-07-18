@@ -1,9 +1,11 @@
-﻿using Application.Cadastro.AutoMapper;
+﻿using System.Linq;
+using Application.Cadastro.AutoMapper;
 using Application.Cadastro.Interfaces;
 using Application.Cadastro.Services;
 using Infra.Data.Cadastro.Context;
 using Infra.Data.Cadastro.Repository;
 using Infra.Data.Cadastro.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Infra.CrossCutting.IoC.Domain.Cadastro;
@@ -16,6 +18,10 @@ public class NativeInjectorBootStrapper
         services.AddScoped(sp =>
         {
             var context = new CadastroContext();
+            
+            if (context.Database.GetPendingMigrations().Any())
+                context.Database.Migrate();
+            
             return context;
         });
         

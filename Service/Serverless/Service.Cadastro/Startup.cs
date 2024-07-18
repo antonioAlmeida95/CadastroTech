@@ -1,10 +1,6 @@
 using System;
 using System.IO;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.OpenApi.Models;
-using System.Net;
-using System.Net.Mime;
 using System.Reflection;
 using System.Text.Json.Serialization;
 using Infra.CrossCutting.IoC.Domain.Cadastro;
@@ -13,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Prometheus;
 
 namespace Service.Cadastro
 {
@@ -55,8 +52,8 @@ namespace Service.Cadastro
                 options.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "Documentação API",
-                    Version = "v1",
-                    Description = "API desafio 01 pos tech da avaliação técnica.",
+                    Version = "v2",
+                    Description = "API desafio 02 pos tech da avaliação técnica.",
                     Contact = new OpenApiContact
                     {
                         Name = "Antonio Lucas de Almeida",
@@ -94,9 +91,28 @@ namespace Service.Cadastro
                 c.RoutePrefix = string.Empty;
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Documentação Api");
             });
+            
+            ConfigurePrometheus(app);
 
             app.UseRouting();
             app.UseEndpoints(endpoints => endpoints.MapControllers());
+        }
+
+        private static void ConfigurePrometheus(IApplicationBuilder app)
+        {
+            var counter = Metrics.CreateCounter("ApiMetric", "Metricas das Aplicação", new CounterConfiguration
+            {
+                LabelNames = ["method", "endpoint"]
+            });
+
+            app.Use((context, next) =>
+            {
+                counter.WithLabels(context.Request.Method, context.Request.Path).Inc();
+                return next();
+            });
+
+            app.UseMetricServer();
+            app.UseHttpMetrics();
         }
 
         private static IServiceCollection ConfigureNativeInjector(IServiceCollection services)
